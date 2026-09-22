@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>سلة المشتريات - متجري الإلكتروني</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background-color: #f9f9f9; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: center; border-bottom: 1px solid #ddd; }
+        th { background-color: #f2f2f2; }
+        .total { font-size: 1.3em; font-weight: bold; color: #27ae60; text-align: left; margin-top: 20px; }
+        .btn { display: inline-block; padding: 10px 20px; color: white; text-decoration: none; border-radius: 5px; margin-top: 15px; }
+        .btn-green { background-color: #27ae60; }
+        .btn-red { background-color: #e74c3c; }
+        .btn-gray { background-color: #34495e; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>سلة المشتريات</h1>
+        {% if cart_items %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>المنتج</th>
+                        <th>السعر</th>
+                        <th>الكمية</th>
+                        <th>الإجمالي</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.product.price }} جنيه</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.item_total }} جنيه</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <div class="total">الإجمالي النهائي: {{ total_price }} جنيه</div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                <a href="{% url 'clear_cart' %}" class="btn btn-red">تفريغ السلة</a>
+                <a href="{% url 'product_list' %}" class="btn btn-gray">متابعة التسوق</a>
+            </div>
+        {% else %}
+            <p>السلة فارغة حالياً.</p>
+            <a href="{% url 'product_list' %}" class="btn btn-gray">العودة للرئيسية</a>
+        {% endif %}
+    </div>
+</body>
+</html>

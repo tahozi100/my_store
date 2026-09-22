@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} - متجري الإلكتروني</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background-color: #f9f9f9; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: flex; gap: 30px; align-items: center; }
+        .product-img { max-width: 350px; width: 100%; border-radius: 8px; }
+        .details { flex: 1; }
+        .price { color: #27ae60; font-weight: bold; font-size: 1.5em; margin: 15px 0; }
+        .btn { display: inline-block; padding: 10px 20px; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+        .btn-green { background-color: #27ae60; }
+        .btn-back { background-color: #34495e; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-img">
+        {% else %}
+            <div style="width: 300px; height: 300px; background: #eee; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #888;">بدون صورة</div>
+        {% endif %}
+        
+        <div class="details">
+            <h1>{{ product.name }}</h1>
+            <p class="price">{{ product.price }} جنيه</p>
+            <p style="line-height: 1.6; color: #555;">{{ product.description }}</p>
+            
+            <a href="{% url 'add_to_cart' product.pk %}" class="btn btn-green">أضف إلى السلة 🛒</a>
+            <br>
+            <a href="{% url 'product_list' %}" class="btn btn-back">العودة للرئيسية</a>
+        </div>
+    </div>
+</body>
+</html>
