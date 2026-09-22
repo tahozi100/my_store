@@ -106,21 +106,18 @@ USE_TZ = True
 
 
 # Static and Media files (Cloudinary Setup)
-# Static and Media files (Cloudinary Setup)
-
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# إعدادات التخزين الحديثة المتوافقة مع Django 6.x و Cloudinary
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "cloudinary_storage.storage.StaticCloudinaryStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 
@@ -129,9 +126,3 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.getenv('CLOUDINARY_API_KEY', '934741261159572'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', '0zjnikeV_2t-HtDQQgKqOrA-uX8'),
 }
-
-# حل جذري لتوافق إصدارات Django الحديثة مع حزمة Cloudinary القديمة
-import django.conf.global_settings
-django.conf.global_settings.STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
