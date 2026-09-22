@@ -124,11 +124,6 @@ STORAGES = {
     },
 }
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'pvjmwfxm',
-    'API_KEY': '934741261159572',
-    'API_SECRET': '0zjnikeV_2t-HtDQQgKqOrA-uX8',
-}
-
-# Default primary key field type
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# إضافة الإعدادات القديمة لكي تقرأها مكتبة cloudinary_storage دون أخطاء مع Django 6
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
