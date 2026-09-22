@@ -125,5 +125,8 @@ STORAGES = {
 }
 
 # إضافة الإعدادات القديمة لكي تقرأها مكتبة cloudinary_storage دون أخطاء مع Django 6
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'pvjmwfxm'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY', '934741261159572'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', '0zjnikeV_2t-HtDQQgKqOrA-uX8'),
+}
